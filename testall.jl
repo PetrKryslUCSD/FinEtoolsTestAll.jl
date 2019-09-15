@@ -24,11 +24,12 @@ for p in packagelist
 	run(`git clone https://github.com/PetrKryslUCSD/$(p).jl.git`)
 	cd("$(p).jl")
 	run(`"pwd"`)
+	Pkg.activate(".")      
+	Pkg.instantiate()                              
 	try
-		Pkg.activate(".")      
-		Pkg.instantiate()                              
 		Pkg.test()
 	catch
+		@error "Some tests failed?"
 	end
 	cd("..")
 end
