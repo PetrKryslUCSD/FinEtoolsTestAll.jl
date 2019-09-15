@@ -18,12 +18,12 @@ end
 rm(testfolder, force=true, recursive=true)
 mkpath(testfolder)
 cd(testfolder)
-run(`"pwd"`)
+println("Current folder: $(pwd())")
 
 for p in packagelist
 	run(`git clone https://github.com/PetrKryslUCSD/$(p).jl.git`)
 	cd("$(p).jl")
-	run(`"pwd"`)
+	println("Current folder: $(pwd())")
 	Pkg.activate(".")      
 	Pkg.instantiate()                              
 	try
