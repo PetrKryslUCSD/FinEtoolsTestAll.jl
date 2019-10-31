@@ -1,7 +1,6 @@
 using Pkg
 
 packagelist = [
-"FinEtools", 
 "FinEtoolsAcoustics", 
 "FinEtoolsHeatDiff", 
 "FinEtoolsDeforLinear", 
@@ -20,12 +19,27 @@ mkpath(testfolder)
 cd(testfolder)
 println("Current folder: $(pwd())")
 
+let p = "FinEtools"
+	run(`git clone https://github.com/PetrKryslUCSD/$(p).jl.git`)
+	cd("$(p).jl")
+	println("Current folder: $(pwd())")
+	Pkg.activate(".")      
+	Pkg.instantiate()                          
+	try
+		Pkg.test()
+	catch
+		@error "Some tests failed?"
+	end
+	cd("..")
+end
+
 for p in packagelist
 	run(`git clone https://github.com/PetrKryslUCSD/$(p).jl.git`)
 	cd("$(p).jl")
 	println("Current folder: $(pwd())")
 	Pkg.activate(".")      
-	Pkg.instantiate()                              
+	Pkg.instantiate()    
+	Pkg.develop(PackageSpec(path = "../FinEtools.jl"))                          
 	try
 		Pkg.test()
 	catch
