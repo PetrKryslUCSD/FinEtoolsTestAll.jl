@@ -1,6 +1,7 @@
 using Pkg
 
 packagelist = [
+"FinEtoolsVibInFluids",
 "FinEtoolsAcoustics", 
 "FinEtoolsHeatDiff", 
 "FinEtoolsDeforLinear", 
@@ -38,8 +39,9 @@ for p in packagelist
 	cd("$(p).jl")
 	println("Current folder: $(pwd())")
 	Pkg.activate(".")      
-	Pkg.instantiate()    
-	Pkg.develop(PackageSpec(path = "../FinEtools.jl"))                          
+	Pkg.instantiate()  
+	Pkg.update() 
+	Pkg.develop(PackageSpec(path = "../FinEtools.jl"))    
 	try
 		Pkg.test()
 	catch
