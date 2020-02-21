@@ -7,7 +7,8 @@ packagelist = [
 "FinEtoolsDeforLinear", 
 "FinEtoolsMeshing", 
 "FinEtoolsVoxelMesher", 
-"FinEtoolsDeforNonlinear"
+"FinEtoolsDeforNonlinear",
+"FinEtoolsFlexBeams"
 ]
 testfolder = "./tests"
 
