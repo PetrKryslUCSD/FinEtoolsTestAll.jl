@@ -42,7 +42,8 @@ for p in packagelist
 	Pkg.activate(".")      
 	Pkg.instantiate()  
 	Pkg.update() 
-	Pkg.develop(PackageSpec(path = "../FinEtools.jl"))    
+	#Pkg.develop(PackageSpec(path = "../FinEtools.jl"))    
+    Pkg.add("FinEtools")    
 	try
 		Pkg.test()
 	catch
